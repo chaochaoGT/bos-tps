@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.itcast.mavenbos</groupId>
+    <artifactId>bos-father</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>bos-service</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>cn.itcast.mavenbos</groupId>
+  		<artifactId>bos-dao</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<!-- 业务层引入redisTemplate模板 -->
+  	 	<dependency>
+  		<groupId>cn.itcast.mavenbos</groupId>
+  		<artifactId>bos-redis</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<!-- 添加mq生成者依赖 -->
+  	 	<dependency>
+  	 		<groupId>cn.itcast.mavenbos</groupId>
+  	 		<artifactId>bos-mqproducer</artifactId>
+  	 		<version>0.0.1-SNAPSHOT</version>
+  	 	</dependency>
+  	 	<dependency>
+  	 		<groupId>org.apache.poi</groupId>
+  	 		<artifactId>poi</artifactId>
+  	 	</dependency>
+  	 	<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+			<!-- 使用CXF RS开发 -->
+  		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+		</dependency>
+		
+		<!-- 使用rs客户端  -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+		</dependency>
+		
+		<!-- 在CXF扩展提供者，提供转换json接口  -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-extension-providers</artifactId>
+		</dependency>
+
+		<!-- cxf 扩展提供者 转换json 默认需求一个工具包  -->
+		<dependency>
+			<groupId>org.codehaus.jettison</groupId>
+			<artifactId>jettison</artifactId>
+		</dependency>
+
+  </dependencies>
+</project>

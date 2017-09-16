@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+<!-- shiro 权限控制 -->
+	<bean id="shiroSecurityFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- shiro 的核心安全接口 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 要求登录时的链接 -->
+		<property name="loginUrl" value="/login.jsp" />
+		<!-- 登陆成功后要跳转的连接 -->
+		<property name="successUrl" value="/index.jsp" />
+		<!-- 权限不足，跳转路径  -->
+		<property name="unauthorizedUrl" value="/unauthorized.jsp" />
+		<!-- shiro 连接约束配置 -->
+		<!-- URL控制规则  路径=规则 -->
+		<property name="filterChainDefinitions">
+			<value>
+				/css/** = anon
+				/demo/** = anon
+				/images/** = anon
+				/js/** = anon
+				/json/** = anon
+				/login.jsp** = anon   
+				/validatecode.jsp** = anon
+				/userAction_login**=anon
+				/userAction_validCheckCode**=anon
+				/** = authc 
+			</value>
+		</property>
+	</bean>
+<!-- 	/**  除了上述配置 其他资源必须需要身份认证 (登陆) -->
+	<!-- 安全管理器 -->
+	<bean id="securityManager" 
+		class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- 在安全管理器，应该注入 Realm 连接安全数据  -->
+		<property name="realm" ref="bosRealm"></property>
+	</bean>
+	
+	<!-- realm创建 -->
+	<bean id="bosRealm" class="cn.itcast.bos.realm.BosRealm"></bean>
+
+
+</beans>

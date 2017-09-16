@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 不用重启服务器 -->
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+<!-- 	<constant name="struts.allowed.action.names" value="[a-zA-Z0-9._!/\-]*"/> -->
+	<!-- 表单样式 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 国际化文件 -->
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<!-- 动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+	<package name="mavenbos" extends="json-default">
+	 <!-- 注册自己的  -->
+	<result-types>
+	  <result-type name="fastjson" class="cn.itcast.bos.action.result.FastJsonResult">
+	  </result-type>
+	</result-types>
+	
+	
+	<!-- 拦截器注册 -->
+<!-- 	  <interceptors> -->
+<!-- 	    <interceptor name="" class=""> -->
+<!-- 	      <param name="includeMethods">add,delete,save</param> -->
+<!-- 	    </interceptor> -->
+<!-- 	    <interceptor-stack name=""></interceptor-stack> -->
+<!-- 	  </interceptors> -->
+	<global-results>
+	  <result name="pageQuery" type="fastjson">
+	  <!-- 配置root -->
+	    <param name="root">obj</param>
+	  </result>
+	</global-results>
+	
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		<!-- 需要进行权限控制的页面访问  action  默认 ActionSupport  -->
+		<action name="page_*_*">
+			<result type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+	</package>
+
+</struts>

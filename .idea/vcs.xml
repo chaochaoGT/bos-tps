@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/bos-dao" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/bos-domain" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/bos-redis" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/bos-shiro" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/bos-utils" vcs="svn" />
+  </component>
+</project>

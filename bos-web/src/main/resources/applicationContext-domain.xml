@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+  <!--  1数据源 连接池以及redis初始化配置文件信息 -->
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties"/>
+    <!-- 开启spring相关注解 -->
+    <context:component-scan base-package="cn.itcast"/>
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<!--           配置 连接数据库参数  c3p0 连接池  -->
+            <property name="driverClass" value="${jdbc.driverClass}"></property>
+            <property name="jdbcUrl" value="${jdbc.url}"></property>
+            <property name="user" value="${jdbc.username}"></property>
+            <property name="password" value="${jdbc.password}"></property>
+       </bean>
+  
+  <!-- 2: spring 完成spring  data jpa  工厂创建 
+     hiberante   sessionFactory  创建自动建表    session
+     spring data jpa  EntityManagerFactory  创建也会自动建表   entityManager
+  -->
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 实体类扫描 -->
+		<property name="packagesToScan" value="cn.itcast.bos.domain" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+			  <!-- 操作数据库名称 -->
+				<property name="database" value="MYSQL " />
+				<!-- 表不存在自动建表 -->
+				<property name="generateDdl" value="true" />
+				<!-- 控制台数据sql语句 -->
+				<property name="showSql" value="true" />
+				<!-- 数据库方言 -->
+				<property name="databasePlatform" value="${jdbc.dialect}" />
+			</bean>
+		</property>
+	</bean>
+   <!-- aop 注解开发 -->
+   <!-- 开启aop注解 -->
+   <aop:aspectj-autoproxy/>
+</beans>

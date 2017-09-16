@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.itcast.mavenbos</groupId>
+    <artifactId>bos-father</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>bos-mqproducer</artifactId>
+  <!-- mq生产者  spring   mq  junit -->
+  <dependencies>
+  	<dependency>
+  		<groupId>cn.itcast.mavenbos</groupId>
+  		<artifactId>bos-domain</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<!-- mq spring整合依赖 -->
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-jms</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.activemq</groupId>
+  		<artifactId>activemq-all</artifactId>
+  	</dependency>
+  	<!-- mq依赖  5.2.0 依赖 3.7 xbean -->
+  	<dependency>
+		    <groupId>org.apache.xbean</groupId>
+		    <artifactId>xbean-spring</artifactId>
+		</dependency>
+  </dependencies>
+</project>
